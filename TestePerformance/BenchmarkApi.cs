@@ -36,7 +36,7 @@ public class BenchmarkApi
     {
         return _httpClientExceptionFilter.PostAsync("/api/produtos", null);
     }
-
+    
     [Benchmark]
     public Task ValidacaoComTryCatch()
     {
@@ -47,5 +47,5 @@ public class BenchmarkApi
     public Task ValidacaoSemException()
     {
         return _httpClientSemException.PostAsync("/api/produtos", null);
-    }
+    }    
 }

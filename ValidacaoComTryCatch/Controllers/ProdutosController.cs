@@ -2,23 +2,27 @@
 using Microsoft.AspNetCore.Mvc;
 using ValidacaoComTryCatch;
 
-namespace ValidacaoComTryCatch.Controllers
+namespace ValidacaoComTryCatch.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ProdutosController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProdutosController : ControllerBase
+    [HttpPost]
+    public IActionResult Post([FromBody] string cpf)
     {
-        [HttpPost]
-        public IActionResult Post()
+        try
         {
-            try
+            if (string.IsNullOrEmpty(cpf))
             {
                 throw new BusinessException("Validação por exception");
             }
-            catch (BusinessException ex)
-            {
-                return BadRequest($"TryCatch {ex.Message}");
-            }
         }
+        catch (BusinessException ex)
+        {
+            return BadRequest($"TryCatch {ex.Message}");
+        }
+
+        return Ok();
     }
 }
