@@ -9,7 +9,7 @@ namespace TestePerformanceValidcacaoComExceptionFilter.Controllers;
 public class ProdutosController : ControllerBase
 {
     [HttpPost]
-    public IActionResult Post([FromBody] string cpf)
+    public IActionResult Post(string? cpf)
     {
         if (string.IsNullOrEmpty(cpf))
         {
